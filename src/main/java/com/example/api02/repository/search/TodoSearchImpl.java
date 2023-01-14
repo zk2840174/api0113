@@ -1,5 +1,6 @@
 package com.example.api02.repository.search;
 
+
 import com.example.api02.domain.QTodo;
 import com.example.api02.domain.Todo;
 import com.querydsl.jpa.JPQLQuery;
@@ -23,6 +24,8 @@ public class TodoSearchImpl extends QuerydslRepositorySupport implements TodoSea
 
     @Override
     public Page<Todo> getList(Pageable pageable) {
+
+
 
         QTodo todo = QTodo.todo;
 
