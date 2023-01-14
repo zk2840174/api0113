@@ -3,6 +3,7 @@ package com.example.api02.repository.search;
 import com.example.api02.domain.Product;
 
 import com.example.api02.domain.QProduct;
+import com.example.api02.domain.QProductImages;
 import com.example.api02.dto.ProductDTO;
 import com.querydsl.core.Tuple;
 import com.querydsl.jpa.JPQLQuery;
@@ -57,13 +58,13 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
         log.info("getList2......................");
 
         QProduct product = QProduct.product;
+        QProductImages images = QProductImages.productImages;
 
 
         JPQLQuery<Product> query = from(product);
-        query.leftJoin(product.tags);
-        query.leftJoin(product.images);
+        query.leftJoin(product.images, images);
 
-        query.where(product.images.any().ord.eq(0));
+        query.where(images.ord.eq(0));
         query.groupBy(product);
 
         getQuerydsl().applyPagination(pageable, query);
