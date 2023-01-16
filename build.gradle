@@ -6,6 +6,7 @@ buildscript {
 
 
 plugins {
+    id 'base'
     id 'java'
     id 'org.springframework.boot' version '2.7.7'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
@@ -51,11 +52,39 @@ dependencies {
     implementation 'org.modelmapper:modelmapper:3.1.0'
 
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5','io.jsonwebtoken:jjwt-jackson:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-gson:0.11.5'
+
+    implementation 'com.google.code.gson:gson:2.10.1'
+
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+task "mycompile" {
+
+    println("I am the task MyTask")
+
+
+    println(tasks.getByName('clean'))
+
+
+    Delete clean = tasks.getByName("clean")
+
+//    delete fileTree ("$projectDir/build/generated") {
+//        include '**/*'
+//    }
+
+}
+
+//mycompile.dependsOn('clean')
+
+compileJava.dependsOn('clean')
+
 
 
 sourceSets {

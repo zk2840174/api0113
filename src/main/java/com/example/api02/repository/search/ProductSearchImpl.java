@@ -58,13 +58,13 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
         log.info("getList2......................");
 
         QProduct product = QProduct.product;
-        QProductImages images = QProductImages.productImages;
+        //QProductImages images = QProductImages.productImages;
 
 
         JPQLQuery<Product> query = from(product);
-        query.leftJoin(product.images, images);
+        //query.leftJoin(product.images, images);
 
-        query.where(images.ord.eq(0));
+        query.where(product.images.any().ord.in(0, 1).or (product.images.isEmpty()));
         query.groupBy(product);
 
         getQuerydsl().applyPagination(pageable, query);

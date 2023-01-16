@@ -32,4 +32,12 @@ public class TodoRepositoryTests {
         });
     }
 
+    @Test
+    public void testRead() {
+
+
+        todoRepository.findById(100L);
+
+    }
+
 }

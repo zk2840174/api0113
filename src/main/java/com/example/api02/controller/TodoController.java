@@ -1,6 +1,7 @@
 package com.example.api02.controller;
 
 
+import com.example.api02.annotations.JWTAuth;
 import com.example.api02.dto.*;
 import com.example.api02.service.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +46,7 @@ public class TodoController {
     }
 
     @GetMapping("/{tno}")
+    @JWTAuth(auth = true)
     public TodoDTO read(@PathVariable("tno") Long tno){
 
 
